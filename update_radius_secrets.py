@@ -11,30 +11,29 @@ MERAKI_API_KEY = os.getenv("MERAKI_API_KEY")
 RADIUS_SERVERS = json.loads(os.getenv("RADIUS_SERVERS"))
 
 # get new secret
-new_secret = "123123123123"
-# new_secret = input("Enter new radius secret: ")
+# new_secret = "123123123123"
+new_secret = input("Enter new radius secret: ")
 
-# confirm_secret = input("Confirm new radius secret: ")
+confirm_secret = input("Confirm new radius secret: ")
 
-# if new_secret != confirm_secret:
-#     print("Secrets do not match")
-#     exit()
+if new_secret != confirm_secret:
+    print("Secrets do not match")
+    exit()
 
-# re_confirm_secret = input(f"New radius secret to be used: {new_secret}  (y/n)")
+re_confirm_secret = input(f"New radius secret to be used: {new_secret}  (y/n)")
 
-# if re_confirm_secret.lower() != "y":
-#     print("Exiting")
-#     exit()
+if re_confirm_secret.lower() != "y":
+    print("Exiting")
+    exit()
 
 # ask to confirm all changes or not
-confirm_all = True
+# confirm_all = True
+confirm_everything_input = input("Do you want to confirm all updates?  (y/n)")
 
-# confirm_everything_input = input('Do you want to confirm all updates?  (y/n)')
-
-# if confirm_everything_input.lower() == "y":
-#     confirm_all = True
-# else:
-#     confirm_all = False
+if confirm_everything_input.lower() == "y":
+    confirm_all = True
+else:
+    confirm_all = False
 
 dashboard = meraki.DashboardAPI(MERAKI_API_KEY, output_log=False, print_console=False)
 
